@@ -1,0 +1,17 @@
+[project]
+name = "parser-spimex-sync"
+version = "0.1.0"
+description = "Add your description here"
+readme = "README.md"
+requires-python = ">=3.12"
+dependencies = [
+    "alembic>=1.15.1",
+    "beautifulsoup4>=4.13.3",
+    "dotenv>=0.9.9",
+    "pandas>=2.2.3",
+    "psycopg2>=2.9.10",
+    "pydantic-settings>=2.8.1",
+    "requests>=2.32.3",
+    "sqlalchemy>=2.0.39",
+    "xlrd>=2.0.1",
+]
