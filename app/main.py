@@ -1,13 +1,14 @@
 import logging
 
 
-from common_log import configure_logging
-from database import engine
+from app.common_log import configure_logging
+from app.database import engine
 from parser import fetch_bulletins, download_file
 from process_spimex_files import process_downloaded_files
 
 configure_logging(level=logging.INFO)
 log = logging.getLogger(__name__)
+
 
 def main():
     # Сначала загружаем все бюллетени

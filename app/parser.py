@@ -1,20 +1,15 @@
 import logging
-
+import certifi
 import requests
 import os
 
 from bs4 import BeautifulSoup
 from urllib.parse import urljoin
 
-import certifi
 from datetime import datetime
+from config import BASE_URL, DOWNLOAD_DIR, TARGET_DATE
 
 log = logging.getLogger(__name__)
-
-BASE_URL = "https://spimex.com/markets/oil_products/trades/results/"
-DOWNLOAD_DIR = "downloads/"
-TARGET_DATE = datetime(2023, 1, 1)  # Устанавливаем дату, до которой нужно парсить
-
 
 os.makedirs(DOWNLOAD_DIR, exist_ok=True)
 
@@ -35,7 +30,9 @@ def fetch_bulletins(page):
 
             if link and date_element:
                 url = urljoin(BASE_URL, link["href"])
-                trade_date = datetime.strptime(date_element.text.strip(), "%d.%m.%Y").strftime("%Y-%m-%d")
+                trade_date = datetime.strptime(
+                    date_element.text.strip(), "%d.%m.%Y"
+                ).strftime("%Y-%m-%d")
 
                 # Если встретили дату меньше целевой, останавливаем
                 if datetime.strptime(trade_date, "%Y-%m-%d") < TARGET_DATE:
@@ -49,6 +46,7 @@ def fetch_bulletins(page):
     except Exception as e:
         log.error(f"Ошибка при получении страницы {page}: {e}")
         return []
+
 
 def download_file(url, filename):
     try:
