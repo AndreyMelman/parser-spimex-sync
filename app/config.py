@@ -13,4 +13,4 @@ DB_PASS = os.environ.get("DB_PASS")
 
 BASE_URL = "https://spimex.com/markets/oil_products/trades/results/"
 DOWNLOAD_DIR = "downloads/"
-TARGET_DATE = datetime(2025, 1, 1)
+TARGET_DATE = datetime(2023, 1, 1)
